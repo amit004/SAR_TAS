@@ -10,8 +10,8 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>analyze</artifactId>
-    <name>Analyze Module</name>
+    <artifactId>analyzer</artifactId>
+    <name>Analyzer Module</name>
     <description>Quarkus module: health API, JD PDF parsing, LLM-backed structured JSON</description>
 
     <properties>

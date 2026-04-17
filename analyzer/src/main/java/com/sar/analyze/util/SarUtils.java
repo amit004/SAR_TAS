@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Shared helpers for SAR analyze flows (fallback payloads, text preview).
+ * Shared helpers for SAR analyzer flows (fallback payloads, text preview).
  */
 public final class SarUtils {
 

@@ -12,6 +12,6 @@
     <description>Parent POM for SAR_TAS multi-module project</description>
 
     <modules>
-        <module>analyze</module>
+        <module>analyzer</module>
     </modules>
 </project>

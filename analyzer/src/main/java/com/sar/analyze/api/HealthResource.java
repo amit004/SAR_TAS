@@ -13,6 +13,6 @@ public class HealthResource {
 
     @GET
     public Map<String, String> health() {
-        return Map.of("status", "UP", "module", "analyze");
+        return Map.of("status", "UP", "module", "analyzer");
     }
 }
