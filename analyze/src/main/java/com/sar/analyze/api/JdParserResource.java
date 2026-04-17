@@ -3,6 +3,7 @@ package com.sar.anaylze.api;
 import com.sar.anaylze.dto.JdStructuredResponse;
 import com.sar.anaylze.service.JdLlmService;
 import com.sar.anaylze.service.PdfTextExtractorService;
+import io.smallrye.common.annotation.Blocking;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -27,6 +28,7 @@ public class JdParserResource {
 
     @POST
     @Path("/parse")
+    @Blocking
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response parseJd(
             @RestForm("pdf") FileUpload pdf,

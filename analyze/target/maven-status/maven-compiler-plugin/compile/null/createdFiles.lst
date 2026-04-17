@@ -1,5 +1,3 @@
-com\sar\anaylze\service\PdfTextExtractorService.class
-com\sar\anaylze\api\HealthResource.class
-com\sar\anaylze\api\JdParserResource.class
-com\sar\anaylze\dto\JdStructuredResponse.class
-com\sar\anaylze\service\JdLlmService.class
+com\sar\anaylze\util\CommonUtils.class
+com\sar\anaylze\util\SarUtils.class
+com\sar\anaylze\service\LlmChatClient.class

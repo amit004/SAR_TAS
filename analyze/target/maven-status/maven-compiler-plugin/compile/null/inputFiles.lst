@@ -1,5 +1,11 @@
+C:\Users\acer\Desktop\ruchika\SAR_TAS\analyze\src\main\java\com\sar\analyze\api\CandidateMatchResource.java
 C:\Users\acer\Desktop\ruchika\SAR_TAS\analyze\src\main\java\com\sar\analyze\api\HealthResource.java
 C:\Users\acer\Desktop\ruchika\SAR_TAS\analyze\src\main\java\com\sar\analyze\api\JdParserResource.java
+C:\Users\acer\Desktop\ruchika\SAR_TAS\analyze\src\main\java\com\sar\analyze\dto\CandidateJdMatchResponse.java
 C:\Users\acer\Desktop\ruchika\SAR_TAS\analyze\src\main\java\com\sar\analyze\dto\JdStructuredResponse.java
 C:\Users\acer\Desktop\ruchika\SAR_TAS\analyze\src\main\java\com\sar\analyze\service\JdLlmService.java
+C:\Users\acer\Desktop\ruchika\SAR_TAS\analyze\src\main\java\com\sar\analyze\service\LlmChatClient.java
 C:\Users\acer\Desktop\ruchika\SAR_TAS\analyze\src\main\java\com\sar\analyze\service\PdfTextExtractorService.java
+C:\Users\acer\Desktop\ruchika\SAR_TAS\analyze\src\main\java\com\sar\analyze\service\ResumeJdMatchService.java
+C:\Users\acer\Desktop\ruchika\SAR_TAS\analyze\src\main\java\com\sar\analyze\util\CommonUtils.java
+C:\Users\acer\Desktop\ruchika\SAR_TAS\analyze\src\main\java\com\sar\analyze\util\SarUtils.java
