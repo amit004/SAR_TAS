@@ -17,4 +17,11 @@ public class PdfTextExtractorService {
             return stripper.getText(document);
         }
     }
+
+    public String extractText(byte[] pdfBytes) throws IOException {
+        try (PDDocument document = Loader.loadPDF(pdfBytes)) {
+            PDFTextStripper stripper = new PDFTextStripper();
+            return stripper.getText(document);
+        }
+    }
 }

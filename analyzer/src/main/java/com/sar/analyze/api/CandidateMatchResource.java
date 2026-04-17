@@ -1,6 +1,9 @@
 package com.sar.anaylze.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sar.anaylze.dto.CandidateJdMatchResponse;
+import com.sar.anaylze.dto.JdStructuredResponse;
 import com.sar.anaylze.service.PdfTextExtractorService;
 import com.sar.anaylze.service.ResumeJdMatchService;
 import io.smallrye.common.annotation.Blocking;
@@ -26,8 +29,11 @@ public class CandidateMatchResource {
     @Inject
     ResumeJdMatchService resumeJdMatchService;
 
+    @Inject
+    ObjectMapper objectMapper;
+
     /**
-     * Multipart form: {@code resume} = candidate CV PDF, {@code jd} = job description PDF.
+     * Multipart: {@code resume} = CV PDF (file); {@code jd_profile} = JSON string (same text as {@code POST /api/jd/parse} response body).
      */
     @POST
     @Path("/score")
@@ -35,27 +41,35 @@ public class CandidateMatchResource {
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response scoreCandidate(
             @RestForm("resume") FileUpload resumePdf,
-            @RestForm("jd") FileUpload jdPdf
+            @RestForm("jd_profile") String jdProfileJson
     ) {
         if (resumePdf == null) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity("Field \"resume\" (PDF) is required.")
                     .build();
         }
-        if (jdPdf == null) {
+        if (jdProfileJson == null || jdProfileJson.isBlank()) {
             return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Field \"jd\" (job description PDF) is required.")
+                    .entity("Field \"jd_profile\" (JSON string from POST /api/jd/parse) is required.")
+                    .build();
+        }
+
+        final JdStructuredResponse jdProfile;
+        try {
+            jdProfile = objectMapper.readValue(jdProfileJson.trim(), JdStructuredResponse.class);
+        } catch (JsonProcessingException ex) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("jd_profile must be valid JSON matching the /api/jd/parse response shape.")
                     .build();
         }
 
         try {
             String resumeText = pdfTextExtractorService.extractText(resumePdf.uploadedFile());
-            String jdText = pdfTextExtractorService.extractText(jdPdf.uploadedFile());
-            CandidateJdMatchResponse result = resumeJdMatchService.scoreResumeAgainstJd(resumeText, jdText);
+            CandidateJdMatchResponse result = resumeJdMatchService.scoreResumeAgainstStructuredJd(resumeText, jdProfile);
             return Response.ok(result).build();
         } catch (IOException ex) {
             return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Unable to read one or both PDF files.")
+                    .entity("Unable to read resume PDF.")
                     .build();
         }
     }
